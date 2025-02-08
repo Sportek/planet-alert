@@ -25,7 +25,7 @@ const Index = () => {
             Ensemble, nous pouvons protéger notre environnement grâce à la vigilance citoyenne
           </p>
           <Button
-            onClick={() => navigate.push("/report")}
+            onClick={() => navigate.push("/IncidentForm")}
             className="button-gradient text-lg px-8 py-6"
           >
             Signaler un Incident
@@ -120,7 +120,7 @@ const Index = () => {
             Commencez à faire la différence dès aujourd'hui.
           </p>
           <Button
-            onClick={() => navigate.push("/report")}
+            onClick={() => navigate.push("/IncidentForm")}
             className="button-gradient text-lg px-8 py-6"
           >
             Commencer à Signaler
