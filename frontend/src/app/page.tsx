@@ -9,7 +9,7 @@ const Index = () => {
 
   return (
     <div className="min-h-screen w-full bg-gradient-to-br from-teal-50 to-blue-50">
-      {/* Hero Section */}
+      {/* Section Héro */}
       <section className="relative h-screen flex items-center justify-center px-4">
         <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMiIgY3k9IjIiIHI9IjIiIGZpbGw9IiMwMDAwMDAiIGZpbGwtb3BhY2l0eT0iMC4wNSIvPjwvc3ZnPg==')] opacity-30" />
         <div className="max-w-4xl text-center z-10 animate-fadeIn">
@@ -22,23 +22,23 @@ const Index = () => {
             Planète Alerte
           </h1>
           <p className="text-xl md:text-2xl text-muted-foreground mb-8">
-            Together, we can protect our environment through citizen vigilance
+            Ensemble, nous pouvons protéger notre environnement grâce à la vigilance citoyenne
           </p>
           <Button
             onClick={() => navigate.push("/report")}
             className="button-gradient text-lg px-8 py-6"
           >
-            Report an Incident
+            Signaler un Incident
             <AlertTriangle className="ml-2" />
           </Button>
         </div>
       </section>
 
-      {/* Mission Section */}
+      {/* Section Mission */}
       <section className="py-20 px-4 bg-white/50 backdrop-blur-sm">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
-            Our Mission
+            Notre Mission
           </h2>
           <div className="grid md:grid-cols-2 gap-8">
             <Card className="glass-card p-6 hover:scale-105 transition-transform duration-300">
@@ -46,11 +46,10 @@ const Index = () => {
                 <div className="w-12 h-12 bg-teal-100 rounded-full flex items-center justify-center mr-4">
                   <Leaf className="w-6 h-6 text-teal-600" />
                 </div>
-                <h3 className="text-xl font-semibold">Environmental Protection</h3>
+                <h3 className="text-xl font-semibold">Protection de l'Environnement</h3>
               </div>
               <p className="text-muted-foreground">
-                We empower citizens to be active guardians of our environment by providing
-                a platform to report ecological incidents in real-time.
+                Nous permettons aux citoyens d'être des gardiens actifs de notre environnement en leur offrant une plateforme pour signaler des incidents écologiques en temps réel.
               </p>
             </Card>
             <Card className="glass-card p-6 hover:scale-105 transition-transform duration-300">
@@ -58,39 +57,38 @@ const Index = () => {
                 <div className="w-12 h-12 bg-emerald-100 rounded-full flex items-center justify-center mr-4">
                   <TreePine className="w-6 h-6 text-emerald-600" />
                 </div>
-                <h3 className="text-xl font-semibold">Community Action</h3>
+                <h3 className="text-xl font-semibold">Action Communautaire</h3>
               </div>
               <p className="text-muted-foreground">
-                By connecting concerned citizens with environmental authorities,
-                we create a powerful network for rapid response to ecological threats.
+                En connectant les citoyens préoccupés aux autorités environnementales, nous créons un réseau puissant pour répondre rapidement aux menaces écologiques.
               </p>
             </Card>
           </div>
         </div>
       </section>
 
-      {/* What We Do Section */}
+      {/* Section Que Faisons-Nous */}
       <section className="py-20 px-4">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
-            How It Works
+            Comment Ça Marche
           </h2>
           <div className="grid gap-8">
-            {[
+            {[ 
               {
                 step: "1",
-                title: "Spot an Incident",
-                description: "Notice an environmental issue in your area",
+                title: "Repérer un Incident",
+                description: "Repérez un problème environnemental dans votre région",
               },
               {
                 step: "2",
-                title: "Report It",
-                description: "Use our simple form to document the incident with photos and details",
+                title: "Signalez-le",
+                description: "Utilisez notre formulaire simple pour documenter l'incident avec des photos et des détails",
               },
               {
                 step: "3",
-                title: "Take Action",
-                description: "We notify relevant authorities and track the resolution process",
+                title: "Agir",
+                description: "Nous informons les autorités compétentes et suivons le processus de résolution",
               },
             ].map((item, index) => (
               <div
@@ -111,21 +109,21 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Call to Action */}
+      {/* Appel à l'Action */}
       <section className="py-20 px-4 bg-gradient-to-br from-teal-500/10 to-emerald-500/10">
         <div className="max-w-2xl mx-auto text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-6">
-            Be Part of the Solution
+            Faites Partie de la Solution
           </h2>
           <p className="text-lg text-muted-foreground mb-8">
-            Every report contributes to protecting our environment.
-            Start making a difference today.
+            Chaque rapport contribue à protéger notre environnement.
+            Commencez à faire la différence dès aujourd'hui.
           </p>
           <Button
             onClick={() => navigate.push("/report")}
             className="button-gradient text-lg px-8 py-6"
           >
-            Start Reporting
+            Commencer à Signaler
             <AlertTriangle className="ml-2" />
           </Button>
         </div>
