@@ -1,4 +1,4 @@
-import PlanetAlertLogo from "@/images/logos/planet.svg";
+import PlanetAlertLogo from "@/images/logos/planet-white.svg";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
@@ -8,7 +8,7 @@ import { Button } from "../ui/button";
 const Footer = ({ className }: { className?: string }) => {
 
   return (
-    <div className={cn("flex flex-col items-center gap-4 py-4 bg-zinc-200", className)}>
+    <div className={cn("flex flex-col items-center gap-4 py-4 bg-emerald-600 text-white", className)}>
 
       <RestrictedWidthLayout className="gap-4 flex flex-col items-center justify-center">
         <div className="flex flex-col md:grid md:grid-cols-3 gap-4">
@@ -35,16 +35,19 @@ const Footer = ({ className }: { className?: string }) => {
             <div className="flex flex-col gap-2 text-sm *:py-1">
               <Link
                 href="https://github.com/Sportek/planet-alert"
-                className="text-zinc-700 hover:text-zinc-800"
+                className="text-white hover:text-zinc-100"
               >
                 GitHub
               </Link>
+
+
               <Link
-                href={``}
-                className="text-zinc-700 hover:text-zinc-800"
+                href={`${process.env.NEXT_PUBLIC_API_URL}/docs`}
+                className="text-white hover:text-zinc-100"
               >
                 API Documentation
               </Link>
+
             </div>
           </div>
           <div className="flex flex-col gap-4">
@@ -52,31 +55,37 @@ const Footer = ({ className }: { className?: string }) => {
             <div className="flex flex-col gap-2 text-sm *:py-1">
               <Link
                 href="/cgu"
-                className="text-zinc-700 hover:text-zinc-800"
+                className="text-white hover:text-zinc-100"
               >
                 Conditions générales d'utilisation
               </Link>
+
+
               <Link
                 href="/login"
 
-                className="text-zinc-700 hover:text-zinc-800"
+                className="text-white hover:text-zinc-100"
               >
                 Connexion
+
+
               </Link>
               <Link
                 href="/register"
 
-                className="text-zinc-700 hover:text-zinc-800"
+                className="text-white hover:text-zinc-100"
               >
                 Inscription
+
               </Link>
             </div>
 
           </div>
         </div>
-        <hr className="w-full h-[2px] bg-zinc-400" />
+        <hr className="w-full h-[2px] bg-white" />
         <div className="flex flex-row items-center justify-center w-full">
-          <div className="text-xs text-zinc-700">
+          <div className="text-xs text-white">
+
             <div className="flex flex-col items-center justify-center">
               <div>
                 Copyright © 2025 Planète Alerte. Tous les droits sont réservés.
