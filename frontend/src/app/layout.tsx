@@ -1,3 +1,6 @@
+import Footer from "@/components/footer";
+import Header from "@/components/header";
+import { cn } from "@/lib/utils";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
@@ -14,7 +17,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Planète Alerte",
-  description: "",
+  description: "Planète Alerte est une plateforme interactive qui permet aux citoyens de signaler incidents environnementaux et urgences locales sur une carte.",
 };
 
 export default function RootLayout({
@@ -25,9 +28,16 @@ export default function RootLayout({
   return (
     <html lang="fr">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={cn(
+          `${geistSans.variable} ${geistMono.variable} antialiased h-screen w-screen overflow-auto`,
+          "flex flex-col"
+        )}
       >
-        {children}
+        <Header className="w-full" />
+        <div className="w-full flex-1">
+          {children}
+        </div>
+        <Footer className="w-full" />
       </body>
     </html>
   );
