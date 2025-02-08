@@ -8,6 +8,8 @@ import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 import { Loader2, Upload } from "lucide-react";
 
+import axiosInstance from "@/lib/axios";
+
 type TypeIncident = "Incendie" | "Déversement de pétrole" | "Décharge illégale" | "Déforestation" | "Pollution" | "Autre";
 
 const SignalerIncident = () => {
@@ -19,32 +21,40 @@ const SignalerIncident = () => {
   const [fichiersSélectionnés, setFichiersSélectionnés] = useState<FileList | null>(null);
   const { toast } = useToast();
 
+
+  const resetState = () => {
+    setTypeIncident("");
+    setTypePersonnalisé("");
+    setDescription("");
+    setCauseSuspectée("");
+    setFichiersSélectionnés(null);
+  } 
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
     // Simulation d'appel API
-    setTimeout(() => {
-      setIsLoading(false);
-      if (typeIncident && description && causeSuspectée) {
-        toast({
-          title: "Succès !",
-          description: "Votre rapport d'incident a été soumis.",
-          className: "bg-emerald-500 text-white",
-        });
-        // Réinitialiser le formulaire
-        setTypeIncident("");
-        setTypePersonnalisé("");
-        setDescription("");
-        setCauseSuspectée("");
-        setFichiersSélectionnés(null);
-      } else {
-        toast({
-          title: "Erreur",
-          description: "Veuillez remplir tous les champs obligatoires.",
-          variant: "destructive",
-        });
-      }
-    }, 1500);
+
+    toast({
+      title: "idk !",
+      description: "idk",
+      className: "bg-emerald-500 text-white",
+    });
+    const response = await axiosInstance.post('', { test: 'user'});
+    console.log(response)
+    toast({
+      title: "Succès !",
+      description: response.data,
+      className: "bg-emerald-500 text-white",
+    });
+    setIsLoading(false)
+    resetState()
+
+    //     toast({
+    //       title: "Erreur",
+    //       description: "Veuillez remplir tous les champs obligatoires.",
+    //       variant: "destructive",
+    //     });
   };
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
