@@ -12,7 +12,7 @@ const Header = ({ className }: { className?: string }) => {
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2">
           <Image src={PlanetAlertLogo} alt="Planet Alert Logo" width={32} height={32} />
-          <div className="text-2xl font-bold">Planète Alerte</div>
+          <div className="text-2xl font-bold invisible md:visible">Planète Alerte</div>
         </div>
         <div className="flex items-center gap-2">
           <Button variant="outline">Connexion</Button>
