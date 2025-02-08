@@ -1,4 +1,4 @@
-import axios, { AxiosError } from "axios";
+import axios, { AxiosError, AxiosResponse } from "axios";
 
 
 console.log(process.env.NEXT_PUBLIC_API_URL)
@@ -23,7 +23,7 @@ const axiosInstance = axios.create({
  */
 axiosInstance.interceptors.response.use(
   // Succès
-  (response) => {
+  (response: AxiosResponse) => {
     return response;
   },
   // Erreur
