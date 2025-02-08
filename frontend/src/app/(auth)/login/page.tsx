@@ -19,19 +19,19 @@ const Index = () => {
     e.preventDefault();
     setIsLoading(true);
 
-    // Simulate API call
+    // Simulation d'appel API
     setTimeout(() => {
       setIsLoading(false);
       if (email && password) {
         toast({
-          title: "Success!",
-          description: "You have successfully logged in.",
+          title: "Succès !",
+          description: "Vous êtes connecté avec succès.",
           className: "bg-emerald-500 text-white",
         });
       } else {
         toast({
-          title: "Error",
-          description: "Please fill in all fields.",
+          title: "Erreur",
+          description: "Veuillez remplir tous les champs.",
           variant: "destructive",
         });
       }
@@ -62,7 +62,7 @@ const Index = () => {
           </div>
           <CardTitle className="text-2xl text-center font-semibold">Planète Alerte</CardTitle>
           <CardDescription className="text-center text-muted-foreground">
-            Sign in to report ecological incidents
+            Connectez-vous pour signaler des incidents écologiques
           </CardDescription>
         </CardHeader>
         <form onSubmit={handleSubmit}>
@@ -74,7 +74,7 @@ const Index = () => {
                 <Input
                   id="email"
                   type="email"
-                  placeholder="Enter your email"
+                  placeholder="Entrez votre email"
                   className="pl-10"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
@@ -82,13 +82,13 @@ const Index = () => {
               </div>
             </div>
             <div className="space-y-2">
-              <Label htmlFor="password">Password</Label>
+              <Label htmlFor="password">Mot de passe</Label>
               <div className="relative">
                 <Lock className="absolute left-3 top-2.5 h-5 w-5 text-muted-foreground" />
                 <Input
                   id="password"
                   type="password"
-                  placeholder="Enter your password"
+                  placeholder="Entrez votre mot de passe"
                   className="pl-10"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
@@ -102,10 +102,10 @@ const Index = () => {
                   checked={rememberMe}
                   onCheckedChange={setRememberMe}
                 />
-                <Label htmlFor="remember-me" className="text-sm">Remember me</Label>
+                <Label htmlFor="remember-me" className="text-sm">Se souvenir de moi</Label>
               </div>
               <Button variant="link" className="text-sm p-0 h-auto font-normal">
-                Forgot password?
+                Mot de passe oublié ?
               </Button>
             </div>
           </CardContent>
@@ -118,7 +118,7 @@ const Index = () => {
               {isLoading ? (
                 <Loader2 className="h-4 w-4 animate-spin" />
               ) : (
-                "Sign in"
+                "Se connecter"
               )}
             </Button>
           </CardFooter>
