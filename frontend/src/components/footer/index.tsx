@@ -8,7 +8,7 @@ import { Button } from "../ui/button";
 const Footer = ({ className }: { className?: string }) => {
 
   return (
-    <div className={cn("flex flex-col items-center gap-4 py-4 bg-zinc-200 dark:bg-stats-blue-1050", className)}>
+    <div className={cn("flex flex-col items-center gap-4 py-4 bg-zinc-200", className)}>
 
       <RestrictedWidthLayout className="gap-4 flex flex-col items-center justify-center">
         <div className="flex flex-col md:grid md:grid-cols-3 gap-4">
@@ -34,14 +34,14 @@ const Footer = ({ className }: { className?: string }) => {
             <div className="text-md font-bold">RESSOURCES</div>
             <div className="flex flex-col gap-2 text-sm *:py-1">
               <Link
-                href="https://github.com/Sportek/minecraft-stats"
-                className="text-zinc-700 hover:text-zinc-800 dark:text-zinc-400 dark:hover:text-zinc-300"
+                href="https://github.com/Sportek/planet-alert"
+                className="text-zinc-700 hover:text-zinc-800"
               >
                 GitHub
               </Link>
               <Link
-                href={`${process.env.NEXT_PUBLIC_BACKEND_URL}/docs`}
-                className="text-zinc-700 hover:text-zinc-800 dark:text-zinc-400 dark:hover:text-zinc-300"
+                href={``}
+                className="text-zinc-700 hover:text-zinc-800"
               >
                 API Documentation
               </Link>
@@ -52,21 +52,21 @@ const Footer = ({ className }: { className?: string }) => {
             <div className="flex flex-col gap-2 text-sm *:py-1">
               <Link
                 href="/cgu"
-                className="text-zinc-700 hover:text-zinc-800 dark:text-zinc-400 dark:hover:text-zinc-300"
+                className="text-zinc-700 hover:text-zinc-800"
               >
                 Conditions générales d'utilisation
               </Link>
               <Link
                 href="/login"
 
-                className="text-zinc-700 hover:text-zinc-800 dark:text-zinc-400 dark:hover:text-zinc-300"
+                className="text-zinc-700 hover:text-zinc-800"
               >
                 Connexion
               </Link>
               <Link
                 href="/register"
 
-                className="text-zinc-700 hover:text-zinc-800 dark:text-zinc-400 dark:hover:text-zinc-300"
+                className="text-zinc-700 hover:text-zinc-800"
               >
                 Inscription
               </Link>
