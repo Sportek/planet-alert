@@ -25,8 +25,4 @@ const Header = ({ className }: { className?: string }) => {
   </div>;
 };
 
-
-
 export default Header;
-
-
