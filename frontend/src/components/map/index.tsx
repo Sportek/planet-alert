@@ -1,6 +1,6 @@
 "use client";
 import "mapbox-gl/dist/mapbox-gl.css";
-import Map, { GeolocateControl, NavigationControl } from "react-map-gl/mapbox";
+import Map, { GeolocateControl, Marker, NavigationControl } from "react-map-gl/mapbox";
 
 
 const MapComponent = () => {
@@ -23,6 +23,9 @@ const MapComponent = () => {
     >
       <GeolocateControl position="top-left" />
       <NavigationControl position="top-left" />
+      <Marker longitude={-73.5673} latitude={45.5017}>
+        <div className="bg-red-500 text-white p-2 rounded-md">C'est pour ça que j'suis Gab 1</div>
+      </Marker>
     </Map>
   );
 };
