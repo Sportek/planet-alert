@@ -10,8 +10,7 @@ services:
       POSTGRES_DB: ${DB_DATABASE}
     ports:
       - 5432:5432
-    networks:
-      - planet-alert
+
 
 
 
@@ -20,8 +19,7 @@ services:
     restart: always
     ports:
       - 8080:8080
-    networks:
-      - planet-alert
+
 
   adonis_app:
     container_name: 'planet-alert-backend'
@@ -36,17 +34,11 @@ services:
       - db
     command: >
       sh -c "node ace migration:run --force && node ace serve"
-
-    networks:
-      - planet-alert
     logging:
       driver: "json-file"
       options:
 
+
         max-size: "10m"
         max-file: "3"
-
-  networks:
-    planet-alert:
-      driver: bridge
 
