@@ -1,5 +1,4 @@
 "use client";
-import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -18,10 +17,10 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
-import { useToast } from "@/hooks/use-toast";
-import { Loader2, Upload } from "lucide-react";
-import MapDisplay from "./map";
 import axiosInstance from "@/lib/axios";
+import { Loader2 } from "lucide-react";
+import { useState } from "react";
+import MapDisplay from "./map";
 
 type TypeIncident =
   | "Incendie"
@@ -36,55 +35,32 @@ const SignalerIncident = () => {
   const [typeIncident, setTypeIncident] = useState<TypeIncident | "">("");
   const [typePersonnalisé, setTypePersonnalisé] = useState("");
   const [description, setDescription] = useState("");
-  const [causeSuspectée, setCauseSuspectée] = useState("");
-  const [fichiersSélectionnés, setFichiersSélectionnés] =
-    useState<FileList | null>(null);
-  const { toast } = useToast();
-
+  const [longlat, setLongLat] = useState({ latitude: 0, longitude: 0 });
 
   const resetState = () => {
     setTypeIncident("");
     setTypePersonnalisé("");
     setDescription("");
-    setCauseSuspectée("");
-    setFichiersSélectionnés(null);
-  } 
+    setLongLat({ latitude: 0, longitude: 0 });
+
+  }
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
-    // Simulation d'appel API
+    // Simulation d'appel
 
-    toast({
-      title: "idk !",
-      description: "idk",
-      className: "bg-emerald-500 text-white",
-    });
-    const response = await axiosInstance.post('', { test: 'user'});
+    const incident = {
+      latitude: longlat.latitude,
+      longitude: longlat.longitude,
+      description: description,
+      type: typeIncident,
+    }
+    console.log(incident)
+    const response = await axiosInstance.post('/incidents', incident);
     console.log(response)
-    toast({
-      title: "Succès !",
-      description: response.data,
-      className: "bg-emerald-500 text-white",
-    });
     setIsLoading(false)
     resetState()
-
-    //     toast({
-    //       title: "Erreur",
-    //       description: "Veuillez remplir tous les champs obligatoires.",
-    //       variant: "destructive",
-    //     });
-  };
-
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files && e.target.files.length > 0) {
-      setFichiersSélectionnés(e.target.files);
-      toast({
-        title: "Fichiers sélectionnés",
-        description: `${e.target.files.length} fichier(s) sélectionné(s) pour le téléchargement`,
-      });
-    }
   };
 
   return (
@@ -142,7 +118,7 @@ const SignalerIncident = () => {
                   />
                 </div>
               )}
-              <MapDisplay></MapDisplay>
+              <MapDisplay setLongLat={setLongLat}  ></MapDisplay>
 
               <div className="space-y-2">
                 <label className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
@@ -154,50 +130,6 @@ const SignalerIncident = () => {
                   value={description}
                   onChange={(e) => setDescription(e.target.value)}
                 />
-              </div>
-              <div className="space-y-2">
-                <label className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
-                  Cause suspectée
-                </label>
-                <Input
-                  placeholder="Qu'est-ce qui a causé cet incident selon vous ?"
-                  value={causeSuspectée}
-                  onChange={(e) => setCauseSuspectée(e.target.value)}
-                />
-              </div>
-
-              <div className="space-y-2">
-                <label className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
-                  Télécharger des photos/vidéos
-                </label>
-                <div className="flex items-center justify-center w-full">
-                  <label className="flex flex-col items-center justify-center w-full h-32 border-2 border-dashed rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100 border-gray-300">
-                    <div className="flex flex-col items-center justify-center pt-5 pb-6">
-                      <Upload className="w-8 h-8 mb-2 text-gray-500" />
-                      <p className="mb-2 text-sm text-gray-500">
-                        <span className="font-semibold">
-                          Cliquez pour télécharger
-                        </span>{" "}
-                        ou faites glisser et déposez
-                      </p>
-                      <p className="text-xs text-gray-500">
-                        Images ou vidéos (MAX. 10 Mo)
-                      </p>
-                    </div>
-                    <input
-                      type="file"
-                      className="hidden"
-                      multiple
-                      accept="image/*,video/*"
-                      onChange={handleFileChange}
-                    />
-                  </label>
-                </div>
-                {fichiersSélectionnés && (
-                  <p className="text-sm text-muted-foreground">
-                    {fichiersSélectionnés.length} fichier(s) sélectionné(s)
-                  </p>
-                )}
               </div>
             </CardContent>
             <CardFooter>
@@ -219,7 +151,7 @@ const SignalerIncident = () => {
           </form>
         </Card>
       </div>
-    </div>
+    </div >
   );
 };
 
