@@ -8,7 +8,6 @@ const MapDisplay = ({ setLongLat }: { setLongLat: Dispatch<SetStateAction<{ lati
     const { lngLat } = event; // Get the longitude and latitude from the event
     setClickedLocation(lngLat); // Save clicked location to state
     setLongLat({ latitude: lngLat.lat, longitude: lngLat.lng })
-    console.log("Clicked Location:", lngLat);
   };
 
 

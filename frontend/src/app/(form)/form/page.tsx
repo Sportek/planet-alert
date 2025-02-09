@@ -14,10 +14,7 @@ export default function Form() {
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const onSubmit = (data: any) => {
-    console.log("Form Data:", data);
     setSubmitted(true);
-
-
   };
 
   return (

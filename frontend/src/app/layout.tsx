@@ -1,5 +1,6 @@
 import Footer from "@/components/footer";
 import Header from "@/components/header";
+import { Toaster } from "@/components/ui/toaster";
 import { AuthProvider } from "@/contexts/auth";
 import { UserProvider } from "@/contexts/user";
 import { cn } from "@/lib/utils";
@@ -39,6 +40,7 @@ export default function RootLayout({
           <Header className="w-full" />
           <div className="w-full flex-1">
             <UserProvider>
+              <Toaster />
               {children}
             </UserProvider>
           </div>

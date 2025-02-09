@@ -17,6 +17,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
+import { useToast } from "@/hooks/use-toast";
 import axiosInstance from "@/lib/axios";
 import { Loader2 } from "lucide-react";
 import { useState } from "react";
@@ -56,12 +57,19 @@ const SignalerIncident = () => {
       description: description,
       type: typeIncident,
     }
-    console.log(incident)
-    const response = await axiosInstance.post('/incidents', incident);
-    console.log(response)
+    await axiosInstance.post('/incidents', incident);
+
+
+    toast({
+      title: "Incident signalé avec succès",
+      description: "Merci pour votre contribution",
+    })
+
     setIsLoading(false)
     resetState()
   };
+
+  const { toast } = useToast()
 
   return (
     <div className="min-h-screen w-full flex items-center justify-center bg-gradient-to-br from-teal-50 to-blue-50 p-4">
