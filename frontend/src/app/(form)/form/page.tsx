@@ -1,21 +1,23 @@
 'use client'
-import { useForm } from "react-hook-form";
-import { useState } from "react";
 import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Card, CardContent } from "@/components/ui/card";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
 
 export default function Form() {
   const { register, handleSubmit, formState: { errors } } = useForm();
   const [submitted, setSubmitted] = useState(false);
   const router = useRouter();
 
-  const onSubmit = (data) => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const onSubmit = (data: any) => {
     console.log("Form Data:", data);
     setSubmitted(true);
-    
+
+
   };
 
   return (
