@@ -8,6 +8,8 @@ services:
       POSTGRES_PASSWORD: ${DB_PASSWORD}
       POSTGRES_USER: ${DB_USER}
       POSTGRES_DB: ${DB_DATABASE}
+    networks:
+      - planet
 
 
 
@@ -17,6 +19,9 @@ services:
     restart: always
     ports:
       - 8080:8080
+    networks:
+      - planet
+
 
 
   adonis_app:
@@ -24,8 +29,7 @@ services:
     image: "sportek/planet-alert-backend:${IMAGE_TAG:-latest}"
     restart: 'unless-stopped'
     ports:
-
-      - '3333:3333'
+      - '9030:3333'
     env_file:
       - .env.production
     depends_on:
@@ -35,8 +39,12 @@ services:
     logging:
       driver: "json-file"
       options:
-
-
         max-size: "10m"
         max-file: "3"
+    networks:
+      - planet
+
+networks:
+  planet:
+    driver: bridge
 
