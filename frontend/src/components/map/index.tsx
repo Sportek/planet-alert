@@ -1,9 +1,36 @@
 "use client";
+import getIncidents from "@/http/incidents";
+import { Icon } from "@iconify/react";
 import "mapbox-gl/dist/mapbox-gl.css";
+import { useEffect, useState } from "react";
 import Map, { GeolocateControl, Marker, NavigationControl } from "react-map-gl/mapbox";
+
+export interface Incident {
+  id: number;
+  latitude: number;
+  longitude: number;
+  type: string;
+  description: string;
+  createdAt: string;
+  updatedAt: string;
+}
 
 
 const MapComponent = () => {
+
+  const [incidents, setIncidents] = useState<Incident[]>([]);
+
+  useEffect(() => {
+    const fetchIncidents = async () => {
+      const response = await getIncidents();
+      setIncidents(response);
+    };
+
+    fetchIncidents();
+  }, []);
+
+
+
   return (
     <Map
       mapboxAccessToken="pk.eyJ1Ijoic3BvcnRlayIsImEiOiJjbTZ3aW12MTgwa2ttMmlwdDdqMjQ5ODJwIn0.YqGRUemBdOYPV05KqCQXsg"
@@ -23,12 +50,20 @@ const MapComponent = () => {
     >
       <GeolocateControl position="top-left" />
       <NavigationControl position="top-left" />
-      <Marker longitude={-73.5673} latitude={45.5017}>
-        <div className="bg-red-500 text-white p-2 rounded-md">C'est pour ça que j'suis Gab 1</div>
-      </Marker>
+      {incidents.map((incident) => (
+        <Marker key={incident.id} longitude={incident.longitude} latitude={incident.latitude} anchor="bottom" onClick={() => {
+          console.log(incident);
+        }}>
+          <Icon icon="mdi:fire" className="text-red-500 text-2xl" />
+        </Marker>
+      ))}
+
+
     </Map>
   );
 };
+
+
 
 export default MapComponent;
 
