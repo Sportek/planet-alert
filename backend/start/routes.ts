@@ -11,6 +11,7 @@ import AuthController from '#controllers/auth_controller'
 import IncidentImagesController from '#controllers/incident_images_controller'
 import IncidentsController from '#controllers/incidents_controller'
 import router from '@adonisjs/core/services/router'
+import { middleware } from './kernel.js'
 
 router.group(() => {
   router.group(() => {
@@ -23,7 +24,13 @@ router.group(() => {
   router.group(() => {
     router.post('/', [IncidentsController, 'createIncident'])
     router.get('/', [IncidentsController, 'getIncidents'])
-  }).prefix('/incidents')
+    router.post('/many', [IncidentsController, 'createManyIncidents'])
+  }).prefix('/incidents').use(middleware.auth({
+    guards: ['api'],
+  }))
+
+
+
 
   router.group(() => {
     router.post('/', [IncidentImagesController, 'createIncidentImage'])

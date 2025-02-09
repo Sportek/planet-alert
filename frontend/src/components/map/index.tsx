@@ -1,4 +1,5 @@
 "use client";
+import { User } from "@/contexts/user";
 import getIncidents from "@/http/incidents";
 import { Icon } from "@iconify/react";
 import "mapbox-gl/dist/mapbox-gl.css";
@@ -14,7 +15,9 @@ export interface Incident {
   description: string;
   createdAt: string;
   updatedAt: string;
+  user: User;
 }
+
 
 export const INCIDENT_CONFIG = {
   "Incendie": {
@@ -100,19 +103,22 @@ const MapComponent = () => {
               <Icon icon={getIncidentConfig(incident.type as TypeIncident).icon} className="text-2xl" style={{ color: getIncidentConfig(incident.type as TypeIncident).color }} />
             </PopoverTrigger>
             <PopoverContent className="w-80 p-4 space-y-3">
-
               <div className="border-b pb-2">
-
                 <div className="flex items-center gap-2 mb-2">
                   <Icon icon={getIncidentConfig(incident.type as TypeIncident).icon} className="text-2xl" style={{ color: getIncidentConfig(incident.type as TypeIncident).color }} />
                   <h3 className="font-semibold text-lg">Incident {getIncidentConfig(incident.type as TypeIncident).label}</h3>
                 </div>
 
                 <p className="text-sm text-gray-600">{incident.description}</p>
-
               </div>
 
               <div className="space-y-2 text-sm">
+                <div className="flex items-center gap-2">
+                  <Icon icon="mdi:account" className="text-gray-500" />
+                  <p>Signalé par {incident.user.fullName}</p>
+                </div>
+
+
                 <div className="flex items-center gap-2">
                   <Icon icon="mdi:clock-outline" className="text-gray-500" />
                   <p>Créé le {new Date(incident.createdAt).toLocaleString('fr-FR', {
