@@ -8,9 +8,10 @@ services:
       POSTGRES_PASSWORD: ${DB_PASSWORD}
       POSTGRES_USER: ${DB_USER}
       POSTGRES_DB: ${DB_DATABASE}
+    ports:
+      - 0.0.0.0:9050:5432
     networks:
       - planet
-
 
 
 
