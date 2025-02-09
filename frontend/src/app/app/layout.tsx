@@ -20,7 +20,7 @@ const AppLayout = ({ children }: { children: React.ReactNode }) => {
     return <Loader />;
   }
 
-  return <div>{children}</div>;
+  return <>{children}</>;
 };
 
 
