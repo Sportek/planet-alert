@@ -1,5 +1,7 @@
 import Footer from "@/components/footer";
 import Header from "@/components/header";
+import { AuthProvider } from "@/contexts/auth";
+import { UserProvider } from "@/contexts/user";
 import { cn } from "@/lib/utils";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
@@ -33,11 +35,15 @@ export default function RootLayout({
           "flex flex-col"
         )}
       >
-        <Header className="w-full" />
-        <div className="w-full flex-1">
-          {children}
-        </div>
-        <Footer className="w-full" />
+        <AuthProvider>
+          <Header className="w-full" />
+          <div className="w-full flex-1">
+            <UserProvider>
+              {children}
+            </UserProvider>
+          </div>
+          <Footer className="w-full" />
+        </AuthProvider>
       </body>
     </html>
   );
