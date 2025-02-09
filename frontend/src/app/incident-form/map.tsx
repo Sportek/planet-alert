@@ -1,7 +1,7 @@
 import classes from "@/css/page.module.css";
 import "mapbox-gl/dist/mapbox-gl.css"; // Import Mapbox GL CSS
 import { useState } from "react";
-import Map, { GeolocateControl, NavigationControl } from "react-map-gl/mapbox";
+import Map, { GeolocateControl, Marker, NavigationControl } from "react-map-gl/mapbox";
 const MapDisplay = () => {
   const [clickedLocation, setClickedLocation] = useState<{ lat: number, lng: number } | null>(null);
   const handleMapClick = (event: any) => {
@@ -13,7 +13,6 @@ const MapDisplay = () => {
 
   return (
     <div>
-      Clicked Location: Lat {clickedLocation?.lat}, Lng {clickedLocation?.lng}
       <main className={classes.mainStyle}>
         <Map
           mapboxAccessToken="pk.eyJ1Ijoic3BvcnRlayIsImEiOiJjbTZ3aW12MTgwa2ttMmlwdDdqMjQ5ODJwIn0.YqGRUemBdOYPV05KqCQXsg"
@@ -33,9 +32,20 @@ const MapDisplay = () => {
         >
           <GeolocateControl position="top-left" />
           <NavigationControl position="top-left" />
+
+          {clickedLocation && (
+            <Marker
+              longitude={clickedLocation.lng}
+              latitude={clickedLocation.lat}
+              anchor="bottom"
+              color="red"
+            />
+          )}
         </Map>
       </main>
+
     </div>
+
   );
 };
 
