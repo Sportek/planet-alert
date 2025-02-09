@@ -1,12 +1,13 @@
 import classes from "@/css/page.module.css";
 import "mapbox-gl/dist/mapbox-gl.css"; // Import Mapbox GL CSS
-import { useState } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 import Map, { GeolocateControl, Marker, NavigationControl } from "react-map-gl/mapbox";
-const MapDisplay = () => {
+const MapDisplay = ({ setLongLat }: { setLongLat: Dispatch<SetStateAction<{ latitude: number, longitude: number }>> }) => {
   const [clickedLocation, setClickedLocation] = useState<{ lat: number, lng: number } | null>(null);
   const handleMapClick = (event: any) => {
     const { lngLat } = event; // Get the longitude and latitude from the event
     setClickedLocation(lngLat); // Save clicked location to state
+    setLongLat({ latitude: lngLat.lat, longitude: lngLat.lng })
     console.log("Clicked Location:", lngLat);
   };
 
