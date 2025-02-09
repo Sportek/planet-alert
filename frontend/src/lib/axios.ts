@@ -1,19 +1,12 @@
 import axios, { AxiosError, AxiosResponse } from "axios";
-
-
-console.log(process.env.NEXT_PUBLIC_API_URL)
-export const axiosNoReplaceInstance = axios.create({
-  baseURL: process.env.NEXT_PUBLIC_API_URL,
-  headers: {
-    "Content-Type": "application/json",
-  },
-});
+import token from "./token";
 
 
 const axiosInstance = axios.create({
   baseURL: process.env.NEXT_PUBLIC_API_URL,
   headers: {
     "Content-Type": "application/json",
+    "Authorization": `Bearer ${token.getToken()}`,
   },
 });
 

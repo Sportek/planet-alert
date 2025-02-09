@@ -3,39 +3,43 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Switch } from "@/components/ui/switch";
+import { useAuth } from "@/contexts/auth";
 import { useToast } from "@/hooks/use-toast";
 import { Loader2, Lock, Mail } from "lucide-react";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
+
 
 const Index = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [rememberMe, setRememberMe] = useState(false);
   const { toast } = useToast();
+  const router = useRouter();
+  const { login } = useAuth();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
 
-    // Simulation d'appel API
-    setTimeout(() => {
+    try {
+      await login(email, password);
+      toast({
+        title: "Success",
+        description: "Vous êtes connecté avec succès.",
+
+      });
+      router.push("/");
+    } catch (error) {
+      console.error(error);
+      toast({
+        title: "Erreur",
+        description: "Une erreur est survenue lors de la connexion.",
+        variant: "destructive",
+      });
+    } finally {
       setIsLoading(false);
-      if (email && password) {
-        toast({
-          title: "Succès !",
-          description: "Vous êtes connecté avec succès.",
-          className: "bg-emerald-500 text-white",
-        });
-      } else {
-        toast({
-          title: "Erreur",
-          description: "Veuillez remplir tous les champs.",
-          variant: "destructive",
-        });
-      }
-    }, 1500);
+    }
   };
 
   return (
@@ -94,19 +98,6 @@ const Index = () => {
                   onChange={(e) => setPassword(e.target.value)}
                 />
               </div>
-            </div>
-            <div className="flex items-center justify-between">
-              <div className="flex items-center space-x-2">
-                <Switch
-                  id="remember-me"
-                  checked={rememberMe}
-                  onCheckedChange={setRememberMe}
-                />
-                <Label htmlFor="remember-me" className="text-sm">Se souvenir de moi</Label>
-              </div>
-              <Button variant="link" className="text-sm p-0 h-auto font-normal">
-                Mot de passe oublié ?
-              </Button>
             </div>
           </CardContent>
           <CardFooter>
